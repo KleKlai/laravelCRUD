@@ -54,9 +54,29 @@ code .
 ```bash
 php artisan serve
 ```
+-------------------------------------------
+# Automatic Installion of Breeze and Roles
+
+To automate installation of laravel breeze and permission run the script config.sh
+
+## Where can i find config.sh? 
+
+You can download config.sh (https://github.com/KleKlai/laravelCRUD/blob/main/config.sh)
+
+## Instruction to run the script
+1. Copy the downloaded config.sh to your laravel folder
+2. Open your laravel folder inside visual studio code
+3. Open terminal in visual studio code
+4. Make sure to choose git terminal
+5. Finally execute the code below to begin.
+
+```bash
+bash config.sh
+```
+The script will give you instruction what to do next just follow.
 
 -------------------------------------------
-# Installation of Packages
+# Manual Installation of Packages
 
 ## Package to be Installed
 1. Laravel Breeze - For basic login logout with functions
