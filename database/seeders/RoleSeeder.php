@@ -9,14 +9,10 @@ use Spatie\Permission\Models\Permission;
 
 class RoleSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
-        $admin = Role::create(['name' => 'Admin']);
-        $guest = Role::create(['name' => 'Guest']);
+        Role::create(['name' => 'Admin']);
+        Role::create(['name' => 'Guest']);
     }
 }
+
