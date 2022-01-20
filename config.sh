@@ -32,12 +32,18 @@ if [ "$CONT" = "y" ]; then
     echo "Installing Roles & Permission"
     composer require spatie/laravel-permission
 
-  echo "Deploying Roles & Permission"
+    echo "Deploying Roles & Permission"
 
     php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"
     php artisan optimize:clear
     php artisan migrate
 
+    sed -i '10 i use Spatie\\Permission\\Traits\\HasRoles;' app/Models/User.php
+    sed -i '14 i use HasRoles;' app/Models/User.php
+    sed -i '47 i \\t$role = "Guest"; ' app/Models/User.php app/Http/Controllers/Auth/RegisteredUserController.php
+    sed -i '48 i \\t$user->assignRole($role);' app/Models/User.php app/Http/Controllers/Auth/RegisteredUserController.php
+    sed -i "12 i @role('Admin')I am a Admin! @else I am a Guest...@endrole" resources/views/dashboard.blade.php
+    
     # Ask user default username and password
     red=`tput setaf 1`
     green=`tput setaf 2`
@@ -143,7 +149,7 @@ if [ "$CONT" = "y" ]; then
         }
     }" >> database/seeders/UserSeeder.php
 
-    php artisan migrate:fresh --see
+    php artisan migrate:fresh --seed
 
     printf "${green}User seeder completed successfully.${reset}"
     printf "\n"
